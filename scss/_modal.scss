@@ -1,0 +1,231 @@
+
+.modal {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .80);
+    display: none;
+
+    &.habilitar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+    }
+
+    // Estilo Login
+    .modal-login {
+        width: 650px;
+        min-height: 400px;
+        max-height: 500px;
+        background-image: url('../img/background.jpg');
+        background-position: top center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        box-shadow: 2px 2px 20px $corAmarelo;
+        padding: 50px;
+        border-radius: 30px;
+        display: none;
+        position: relative;
+
+        &.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: fade-up 1s forwards;
+        }
+
+        .input-jogador {
+            width: 350px;
+            height: 50px;
+            border: solid 3px $corAzul;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 18px;
+            outline: none;
+        }
+
+        .regras {
+            text-align: center;
+            font-size: 14px;
+            background-color: rgba(255, 255, 255, .80);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+    }
+
+    .modal-game-over {
+        width: 650px;
+        min-height: 400px;
+        max-height: 500px;
+        background-image: linear-gradient($corAzul, rgb(231, 231, 231));
+        box-shadow: 2px 2px 20px rgb(251, 2, 2);
+        padding: 50px;
+        border-radius: 30px;
+        display: none;
+
+        &.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: fade-up 1s forwards;
+        }
+
+        .img-game-over {
+            width: 300px;
+        }
+
+        .wrapper-btn {
+            display: flex;
+            gap: 30px;
+        }
+
+        
+    }
+
+    .modal-ranking {
+        width: 650px;
+        min-height: 400px;
+        max-height: 500px;
+        background-image: linear-gradient($corAzul, rgb(226, 226, 226));
+        border-radius: 30px;
+        padding: 50px 20px;
+        display: none;
+
+        &.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: fade-up 1s forwards;
+        }
+
+        .wrapper-tabela {
+            width: 100%;
+            min-height: 200px;
+            max-height: 300px;
+            overflow-y: scroll;
+            margin-bottom: 15px;
+
+            &::-webkit-scrollbar {
+                width: 10px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: $corAzul;
+                border-left: 2px solid transparent;
+                border-right: 2px solid transparent;
+                border-radius: 5px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background-color: rgba(255, 255, 255, 0.194);
+                border-radius: 5px;
+            }
+
+            .tabela {
+                // width: 450px;
+                color: white;
+                text-align: center;
+                border-radius: 5px;
+                -webkit-text-stroke: 2px black;
+
+                & .coluna {
+                    padding: 5px;
+                }
+            }
+        }
+
+        .regras {
+            font-family: sans-serif;
+            color: white;
+            font-size: 14px;
+            width: 500px;
+        }
+
+
+    }
+
+    // Estilo botão dentro do modal
+    .btn-modal {
+        background: none;
+        border: none;
+        width: 350px;
+        height: 70px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-content: flex-end;
+        background-color: #bd827c;
+        text-transform: uppercase;
+        padding: 15px;
+        margin: 30px 0px;
+
+        font-size: 34px;
+        font-weight: 600;
+
+        color: #fff;
+
+        transition: 1s;
+    }
+
+    .btn-red-tr:not(:disabled) {
+        cursor: pointer;
+        background-color: $corVermelho;
+
+        &::before {
+            position: absolute;
+            content: "";
+            border-top: 5px solid lighten($corVermelho, 5%);
+            border-left: 5px solid lighten($corVermelho, 5%);
+            border-right: 5px solid darken($corVermelho, 5%);
+            border-bottom: 5px solid darken($corVermelho, 5%);
+
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+
+            transition: 0.5s;
+        }
+
+        &:hover {
+            box-shadow: 7px 7px darken($corVermelho, 20%), -7px -7px lighten($corVermelho, 20%);
+
+            &::before {
+                border: 0px;
+            }
+        }
+    }
+
+    .btn-ranking, .btn-reiniciar {
+        width: 200px;
+        height: 50px;
+        font-size: 25px;
+    }
+
+    .titulo {
+        font-size: 36px;
+        text-align: center;
+        margin: 20px 0px;
+        -webkit-text-stroke: 3px black;
+    }
+
+    // Estilo das imagens do Mario dentro do mogal
+    .img-mario {
+        position: absolute;
+        right: -100px;
+        bottom: 0;
+
+        &.img-mario3, &.img-mario2 {
+            left: -100px;
+        }
+    }
+
+
+}
