@@ -1,3 +1,5 @@
+// Elementos Globais
+const imgMario = document.querySelector('#img-mario');
 
 // Funções
 const playSom = (elemento) => {
@@ -23,7 +25,6 @@ const pular = ({ key }) => {
         }, 500);
     }
 };
-// document.addEventListener('keydown', pular);
 
 const voar = (evento) => {
     if (evento.key === ' ') {
@@ -39,7 +40,6 @@ const voar = (evento) => {
         }, 1500);
     }
 };
-// document.addEventListener('keydown', voar);
 
 const abaixar = ({ key }) => {
     if (key === 'ArrowDown') {
@@ -50,7 +50,6 @@ const abaixar = ({ key }) => {
         playSom('somAgachado');
     };
 };
-// document.addEventListener('keydown', abaixar);
 
 const levantar = ({ key }) => {
     if (key === 'ArrowDown') {
@@ -59,12 +58,11 @@ const levantar = ({ key }) => {
         imgMario.src = './img/mario.gif';
     }
 };
-// document.addEventListener('keyup', levantar);
 
 const limparTexto = () => {
     inputJogador.value = '';
     btnStart.setAttribute('disabled', '');
 };
 
-export { playSom, stopSom, pular, voar, abaixar, levantar, limparTexto };
+export { playSom, stopSom, pular, voar, abaixar, levantar, limparTexto, imgMario };
 

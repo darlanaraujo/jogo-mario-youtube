@@ -3,10 +3,14 @@ import * as conexoes from './conexao.js';
 import * as modulos from './modulos.js';
 
 // Elementos Globais
-const imgMario = document.querySelector('#img-mario');
 const inputJogador = document.querySelector('#inputJogador');
 const btnStart = document.querySelector('#btnStart');
-
+const modal = document.querySelector('#modal');
+const modalLogin = document.querySelector('#modalLogin');
+const txtNomeJogador = document.querySelector('#txtNomeJogador');
+const sleep = document.querySelector('#sleep');
+const txtSleep = document.querySelector('#txtSleep');
+const cenario = document.querySelector('#cenario');
 
 // Variáveis Globais
 let nomeJogador;
@@ -39,7 +43,7 @@ const validarJogador = ({ target }) => {
 };
 
 const iniciarJogo = () => {
-    modulos.playSom('somAbertura');
+    // modulos.playSom('somAbertura');
     inputJogador.addEventListener('input', validarJogador);
 };
 iniciarJogo();
@@ -47,4 +51,30 @@ iniciarJogo();
 const start = () => {
     modulos.limparTexto();
     modulos.stopSom('somAbertura');
+    // modulos.playSom('somPrincipal');
+    document.addEventListener('keydown', modulos.pular);
+    document.addEventListener('keydown', modulos.voar);
+    document.addEventListener('keydown', modulos.abaixar);
+    document.addEventListener('keyup', modulos.levantar);
+
+    modal.classList.remove('habilitar');
+    modalLogin.classList.remove('active');
+
+    txtNomeJogador.innerHTML = nomeJogador;
+
+    sleep.classList.add('active');
+
+    const tempo = setInterval(() => {
+        let cont = txtSleep.innerHTML
+        cont--;
+        txtSleep.innerHTML = cont;
+    }, 1000);
+
+    setTimeout(() => {
+        sleep.classList.remove('active');
+        cenario.classList.add('start');
+        clearInterval(tempo);
+        modulos.imgMario.src = './img/mario.gif';
+        // time();
+    }, 6000);
 };
