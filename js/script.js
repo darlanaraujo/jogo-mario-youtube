@@ -11,6 +11,7 @@ const txtNomeJogador = document.querySelector('#txtNomeJogador');
 const sleep = document.querySelector('#sleep');
 const txtSleep = document.querySelector('#txtSleep');
 const cenario = document.querySelector('#cenario');
+const txtTempo = document.querySelector('#txtTempo');
 
 // Variáveis Globais
 let nomeJogador;
@@ -18,6 +19,8 @@ let moedasJogador = 0;
 let estrelasJogador = 0;
 let tempoJogador = 0;
 let pontuacaoJogador = 0;
+
+let tempoTime;
 
 // Funções
 const validarJogador = ({ target }) => {
@@ -64,8 +67,8 @@ const start = () => {
 
     sleep.classList.add('active');
 
-    const tempo = setInterval(() => {
-        let cont = txtSleep.innerHTML
+    const tempoSleep = setInterval(() => {
+        let cont = txtSleep.innerHTML;
         cont--;
         txtSleep.innerHTML = cont;
     }, 1000);
@@ -73,8 +76,17 @@ const start = () => {
     setTimeout(() => {
         sleep.classList.remove('active');
         cenario.classList.add('start');
-        clearInterval(tempo);
+        clearInterval(tempoSleep);
         modulos.imgMario.src = './img/mario.gif';
-        // time();
+        time();
     }, 6000);
 };
+
+const time = () => {
+    tempoTime = setInterval(() => {
+        tempoJogador = txtTempo.innerHTML;
+        tempoJogador ++;
+        txtTempo.innerHTML = tempoJogador;
+    }, 1000);
+};
+
