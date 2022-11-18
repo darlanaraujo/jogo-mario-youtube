@@ -1,5 +1,5 @@
 // Elementos Globais
-const imgMario = document.querySelector('#img-mario');
+const imgMario = document.querySelector('#imgMario');
 
 // Funções
 const playSom = (elemento) => {

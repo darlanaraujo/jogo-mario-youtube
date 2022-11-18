@@ -34,32 +34,32 @@
             animation: move-nuvens 20s infinite linear 9s;
         }
 
-        .img-tubo {
-            animation: move-tubo 3s infinite linear;
-        }
+        // .img-tubo {
+        //     animation: mover-elementos 3s infinite linear;
+        // }
 
-        .img-bala {
-            animation: move-bala 3s infinite linear 1.5s;
-        }
+        // .img-bala {
+        //     animation: mover-elementos 3s infinite linear 1.5s;
+        // }
 
         .img-moeda {
-            animation: move-moedas 2.5s infinite linear;
+            animation: mover-elementos 2.5s infinite linear;
         }
 
         .img-moeda2 {
-            animation: move-moedas 2.5s infinite linear .5s;
+            animation: mover-elementos 2.5s infinite linear .5s;
         }
 
         .img-moeda3 {
-            animation: move-moedas 2.5s infinite linear 1s;
+            animation: mover-elementos 2.5s infinite linear 1s;
         }
 
         .img-estrela {
-            animation: move-estrelas 2.5s infinite linear;
+            animation: mover-elementos 2.5s infinite linear;
         }
 
         .img-estrela2 {
-            animation: move-estrelas 2s infinite linear 1.5s;
+            animation: mover-elementos 2s infinite linear 1.5s;
         }
     }
 
@@ -93,6 +93,10 @@
                     color: $corAzul;
                     margin-bottom: 10px;
                 }
+            }
+
+            .coluna-nome-jogador {
+                width: 260px;
             }
 
             .img-logo {

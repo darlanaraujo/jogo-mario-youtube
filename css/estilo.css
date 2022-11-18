@@ -1,22 +1,4 @@
-@keyframes move-nuvens {
-  from {
-    right: -500px;
-  }
-  to {
-    right: 100%;
-  }
-}
-
-@keyframes move-tubo {
-  from {
-    right: -80px;
-  }
-  to {
-    right: 100%;
-  }
-}
-
-@keyframes move-bala {
+@keyframes mover-elementos {
   from {
     right: -130px;
   }
@@ -25,18 +7,9 @@
   }
 }
 
-@keyframes move-moedas {
+@keyframes move-nuvens {
   from {
-    right: -50px;
-  }
-  to {
-    right: 100%;
-  }
-}
-
-@keyframes move-estrelas {
-  from {
-    right: -70px;
+    right: -500px;
   }
   to {
     right: 100%;
@@ -354,32 +327,24 @@
   animation: move-nuvens 20s infinite linear 9s;
 }
 
-.cenario.start .img-tubo {
-  animation: move-tubo 3s infinite linear;
-}
-
-.cenario.start .img-bala {
-  animation: move-bala 3s infinite linear 1.5s;
-}
-
 .cenario.start .img-moeda {
-  animation: move-moedas 2.5s infinite linear;
+  animation: mover-elementos 2.5s infinite linear;
 }
 
 .cenario.start .img-moeda2 {
-  animation: move-moedas 2.5s infinite linear .5s;
+  animation: mover-elementos 2.5s infinite linear .5s;
 }
 
 .cenario.start .img-moeda3 {
-  animation: move-moedas 2.5s infinite linear 1s;
+  animation: mover-elementos 2.5s infinite linear 1s;
 }
 
 .cenario.start .img-estrela {
-  animation: move-estrelas 2.5s infinite linear;
+  animation: mover-elementos 2.5s infinite linear;
 }
 
 .cenario.start .img-estrela2 {
-  animation: move-estrelas 2s infinite linear 1.5s;
+  animation: mover-elementos 2s infinite linear 1.5s;
 }
 
 .cenario .header {
@@ -413,6 +378,10 @@
   font-weight: bold;
   color: #199BD9;
   margin-bottom: 10px;
+}
+
+.cenario .header .wrapper-topo .coluna-nome-jogador {
+  width: 260px;
 }
 
 .cenario .header .wrapper-topo .img-logo {

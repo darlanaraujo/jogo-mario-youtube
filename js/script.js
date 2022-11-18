@@ -12,6 +12,8 @@ const sleep = document.querySelector('#sleep');
 const txtSleep = document.querySelector('#txtSleep');
 const cenario = document.querySelector('#cenario');
 const txtTempo = document.querySelector('#txtTempo');
+const imgTubo = document.querySelector('#imgTubo');
+const imgBala = document.querySelector('#imgBala');
 
 // Variáveis Globais
 let nomeJogador;
@@ -21,6 +23,7 @@ let tempoJogador = 0;
 let pontuacaoJogador = 0;
 
 let tempoTime;
+let tempoMoverElementos;
 
 // Funções
 const validarJogador = ({ target }) => {
@@ -79,14 +82,32 @@ const start = () => {
         clearInterval(tempoSleep);
         modulos.imgMario.src = './img/mario.gif';
         time();
+
+        moverElementos(imgTubo);
+        moverElementos(imgBala, 1.5);
+
     }, 6000);
 };
 
 const time = () => {
     tempoTime = setInterval(() => {
         tempoJogador = txtTempo.innerHTML;
-        tempoJogador ++;
+        tempoJogador++;
         txtTempo.innerHTML = tempoJogador;
     }, 1000);
+};
+
+const moverElementos = (elemento, retardo = 0) => {
+    tempoMoverElementos = setInterval(() => {
+        if (tempoJogador <= 10) {
+            elemento.style.animation = `mover-elementos 3s infinite linear ${retardo}s`;
+        } else if (tempoJogador <= 20) {
+            elemento.style.animation = `mover-elementos 2.5s infinite linear ${retardo}s`;
+        } else if (tempoJogador <= 30) {
+            elemento.style.animation = `mover-elementos 2s infinite linear ${retardo}s`;
+        } else if (tempoJogador > 40) {
+            elemento.style.animation = `mover-elementos 1.2s infinite linear ${retardo}s`;
+        }
+    }, 1);
 };
 

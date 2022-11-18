@@ -1,22 +1,4 @@
-@keyframes move-nuvens {
-    from {
-        right: -500px;
-    }
-    to {
-        right: 100%;
-    }
-}
-
-@keyframes move-tubo {
-    from {
-        right: -80px;
-    }
-    to {
-        right: 100%;
-    }
-}
-
-@keyframes move-bala {
+@keyframes mover-elementos {
     from {
         right: -130px;
     }
@@ -25,18 +7,9 @@
     }
 }
 
-@keyframes move-moedas {
+@keyframes move-nuvens {
     from {
-        right: -50px;
-    }
-    to {
-        right: 100%;
-    }
-}
-
-@keyframes move-estrelas {
-    from {
-        right: -70px;
+        right: -500px;
     }
     to {
         right: 100%;
