@@ -14,6 +14,8 @@ const cenario = document.querySelector('#cenario');
 const txtTempo = document.querySelector('#txtTempo');
 const imgTubo = document.querySelector('#imgTubo');
 const imgBala = document.querySelector('#imgBala');
+const imgMoedas = document.querySelectorAll('#imgMoeda');
+const imgEstrelas = document.querySelectorAll('#imgEstrelas');
 
 // Variáveis Globais
 let nomeJogador;
@@ -110,4 +112,22 @@ const moverElementos = (elemento, retardo = 0) => {
         }
     }, 1);
 };
+
+const pegarElementos = setInterval(() => {
+
+}, 0);
+
+
+
+
+
+
+
+let posicaoEsquerda = modulos.imgMario.offsetLeft;
+let posicaoTop = modulos.imgMario.offsetTop;
+
+let posicaoBottom = window.getComputedStyle(modulos.imgMario).bottom.replace('px', '');
+
+console.log(posicaoTop);
+console.log(posicaoBottom);
 
