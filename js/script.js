@@ -15,7 +15,9 @@ const txtTempo = document.querySelector('#txtTempo');
 const imgTubo = document.querySelector('#imgTubo');
 const imgBala = document.querySelector('#imgBala');
 const imgMoedas = document.querySelectorAll('#imgMoeda');
-const imgEstrelas = document.querySelectorAll('#imgEstrelas');
+const imgEstrelas = document.querySelectorAll('#imgEstrela');
+const txtMoedas = document.querySelector('#txtMoedas');
+const txtEstrelas = document.querySelector('#txtEstrelas');
 
 // Variáveis Globais
 let nomeJogador;
@@ -26,6 +28,7 @@ let pontuacaoJogador = 0;
 
 let tempoTime;
 let tempoMoverElementos;
+let tempoPegarElementos;
 
 // Funções
 const validarJogador = ({ target }) => {
@@ -88,6 +91,8 @@ const start = () => {
         moverElementos(imgTubo);
         moverElementos(imgBala, 1.5);
 
+        pegarElementos();
+
     }, 6000);
 };
 
@@ -113,21 +118,48 @@ const moverElementos = (elemento, retardo = 0) => {
     }, 1);
 };
 
-const pegarElementos = setInterval(() => {
+const pegarElementos = () => {
+    tempoPegarElementos = setInterval(() => {
+        let posicaoMarioBottom = window.getComputedStyle(modulos.imgMario).bottom.replace('px', '');
+    
+        let posicaoMarioTop = modulos.imgMario.offsetTop;
+    
+        imgMoedas.forEach((item, index) => {
+            let posicaoMoedaLeft = item.offsetLeft;
+    
+            if(posicaoMarioBottom >= 170 && posicaoMarioBottom <=200 && posicaoMoedaLeft <= 150) {
+                moedasJogador ++;
+    
+                txtMoedas.innerHTML = moedasJogador;
+    
+                item.style.display = 'none';
+    
+                modulos.playSom('somMoeda');
+    
+                setTimeout(() => {
+                    item.style.display = 'block';
+                }, 100);
+            }
+        });
+    
+        imgEstrelas.forEach((item) => {
+            let posicaoEstrelaLeft = item.offsetLeft;
+            let posicaoEstelaTop = item.offsetTop;
+    
+            if(posicaoMarioTop <=250 && posicaoEstrelaLeft <= 300 && posicaoEstrelaLeft >= 150) {
+                estrelasJogador ++;
 
-}, 0);
+                txtEstrelas.innerHTML = estrelasJogador;
 
+                item.style.display = 'none';
 
+                modulos.playSom('somMoeda');
 
-
-
-
-
-let posicaoEsquerda = modulos.imgMario.offsetLeft;
-let posicaoTop = modulos.imgMario.offsetTop;
-
-let posicaoBottom = window.getComputedStyle(modulos.imgMario).bottom.replace('px', '');
-
-console.log(posicaoTop);
-console.log(posicaoBottom);
-
+                setTimeout(() => {
+                    item.style.display = 'block';
+                }, 100);
+            }
+        });
+    
+    }, 250);
+};
