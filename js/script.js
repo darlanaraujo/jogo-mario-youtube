@@ -118,35 +118,38 @@ const moverElementos = (elemento, retardo = 0) => {
     }, 1);
 };
 
+
+
 const pegarElementos = () => {
     tempoPegarElementos = setInterval(() => {
         let posicaoMarioBottom = window.getComputedStyle(modulos.imgMario).bottom.replace('px', '');
-    
+
         let posicaoMarioTop = modulos.imgMario.offsetTop;
-    
+
         imgMoedas.forEach((item, index) => {
             let posicaoMoedaLeft = item.offsetLeft;
-    
-            if(posicaoMarioBottom >= 170 && posicaoMarioBottom <=200 && posicaoMoedaLeft <= 150) {
-                moedasJogador ++;
-    
+
+            if (posicaoMarioBottom >= 170 && posicaoMarioBottom <= 200 && posicaoMoedaLeft <= 150) {
+                moedasJogador++;
+
                 txtMoedas.innerHTML = moedasJogador;
-    
+
                 item.style.display = 'none';
-    
+
                 modulos.playSom('somMoeda');
-    
+
                 setTimeout(() => {
                     item.style.display = 'block';
                 }, 100);
+
             }
+
         });
-    
+
         imgEstrelas.forEach((item) => {
             let posicaoEstrelaLeft = item.offsetLeft;
-            let posicaoEstelaTop = item.offsetTop;
-    
-            if(posicaoMarioTop <=250 && posicaoEstrelaLeft <= 300 && posicaoEstrelaLeft >= 150) {
+
+            if (posicaoMarioTop <= 250 && posicaoMarioTop >= 120 && posicaoEstrelaLeft <= 350 && posicaoEstrelaLeft >= 200) {
                 estrelasJogador ++;
 
                 txtEstrelas.innerHTML = estrelasJogador;
@@ -159,7 +162,9 @@ const pegarElementos = () => {
                     item.style.display = 'block';
                 }, 100);
             }
+
         });
-    
+
     }, 250);
 };
+
