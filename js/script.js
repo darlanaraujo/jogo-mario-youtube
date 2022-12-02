@@ -92,6 +92,7 @@ const start = () => {
         moverElementos(imgBala, 1.5);
 
         pegarElementos();
+        controlePartida();
 
     }, 6000);
 };
@@ -150,7 +151,7 @@ const pegarElementos = () => {
             let posicaoEstrelaLeft = item.offsetLeft;
 
             if (posicaoMarioTop <= 250 && posicaoMarioTop >= 120 && posicaoEstrelaLeft <= 350 && posicaoEstrelaLeft >= 200) {
-                estrelasJogador ++;
+                estrelasJogador++;
 
                 txtEstrelas.innerHTML = estrelasJogador;
 
@@ -168,3 +169,52 @@ const pegarElementos = () => {
     }, 250);
 };
 
+
+const controlePartida = () => {
+    const loopControlePartida = setInterval(() => {
+        const posicaoTuboLeft = imgTubo.offsetLeft;
+        const posicaoBalaLeft = imgBala.offsetLeft;
+        const alturaMario = modulos.imgMario.offsetHeight;
+
+        const posicaoMarioBottom = window.getComputedStyle(modulos.imgMario).bottom.replace('px', '');
+
+        if (posicaoTuboLeft <= 120 && posicaoTuboLeft >= 50 && posicaoMarioBottom <= 110) {
+            imgTubo.style.animation = 'none';
+            imgTubo.style.left = `${posicaoTuboLeft}px`;
+
+            modulos.imgMario.style.animation = 'none';
+            modulos.imgMario.style.bottom = `${posicaoMarioBottom}px`;
+
+            modulos.imgMario.src = './img/mario-game-over.png';
+            modulos.imgMario.style.width = '71px';
+            modulos.imgMario.style.left = '50px';
+
+            modulos.playSom('somPerdeu');
+
+            clearInterval(loopControlePartida);
+            clearInterval(tempoTime);
+            clearInterval(tempoMoverElementos);
+            clearInterval(tempoPegarElementos);
+        }
+
+        if (posicaoBalaLeft <= 120 && posicaoBalaLeft >= 50 && posicaoMarioBottom <= 110 && alturaMario >= 100) {
+            imgBala.style.animation = 'none';
+            imgBala.style.left = `${posicaoBalaLeft}px`;
+
+            modulos.imgMario.style.animation = 'none';
+            modulos.imgMario.style.bottom = `${posicaoMarioBottom}px`;
+
+            modulos.imgMario.src = './img/mario-game-over.png';
+            modulos.imgMario.style.width = '71px';
+            modulos.imgMario.style.left = '70px';
+
+            modulos.playSom('somPerdeu');
+
+            clearInterval(loopControlePartida);
+            clearInterval(tempoTime);
+            clearInterval(tempoMoverElementos);
+            clearInterval(tempoPegarElementos);
+        }
+
+    }, 10);
+};
