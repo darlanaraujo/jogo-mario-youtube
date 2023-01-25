@@ -7,6 +7,7 @@ const inputJogador = document.querySelector('#inputJogador');
 const btnStart = document.querySelector('#btnStart');
 const modal = document.querySelector('#modal');
 const modalLogin = document.querySelector('#modalLogin');
+const modalGameOver = document.querySelector('#modalGameOver');
 const txtNomeJogador = document.querySelector('#txtNomeJogador');
 const sleep = document.querySelector('#sleep');
 const txtSleep = document.querySelector('#txtSleep');
@@ -109,13 +110,14 @@ const moverElementos = (elemento, retardo = 0) => {
     tempoMoverElementos = setInterval(() => {
         if (tempoJogador <= 10) {
             elemento.style.animation = `mover-elementos 3s infinite linear ${retardo}s`;
-        } else if (tempoJogador <= 20) {
-            elemento.style.animation = `mover-elementos 2.5s infinite linear ${retardo}s`;
-        } else if (tempoJogador <= 30) {
-            elemento.style.animation = `mover-elementos 2s infinite linear ${retardo}s`;
-        } else if (tempoJogador > 40) {
-            elemento.style.animation = `mover-elementos 1.2s infinite linear ${retardo}s`;
         }
+        // } else if (tempoJogador <= 20) {
+        //     elemento.style.animation = `mover-elementos 2.5s infinite linear ${retardo}s`;
+        // } else if (tempoJogador <= 30) {
+        //     elemento.style.animation = `mover-elementos 2s infinite linear ${retardo}s`;
+        // } else if (tempoJogador > 40) {
+        //     elemento.style.animation = `mover-elementos 1.2s infinite linear ${retardo}s`;
+        // }
     }, 1);
 };
 
@@ -189,12 +191,10 @@ const controlePartida = () => {
             modulos.imgMario.style.width = '71px';
             modulos.imgMario.style.left = '50px';
 
-            modulos.playSom('somPerdeu');
-
             clearInterval(loopControlePartida);
-            clearInterval(tempoTime);
-            clearInterval(tempoMoverElementos);
-            clearInterval(tempoPegarElementos);
+
+            gameOver();
+
         }
 
         if (posicaoBalaLeft <= 120 && posicaoBalaLeft >= 50 && posicaoMarioBottom <= 110 && alturaMario >= 100) {
@@ -208,13 +208,30 @@ const controlePartida = () => {
             modulos.imgMario.style.width = '71px';
             modulos.imgMario.style.left = '70px';
 
-            modulos.playSom('somPerdeu');
-
             clearInterval(loopControlePartida);
-            clearInterval(tempoTime);
-            clearInterval(tempoMoverElementos);
-            clearInterval(tempoPegarElementos);
+
+            gameOver();
+
         }
 
     }, 10);
+};
+
+const calcularPontuacao = () => {
+    pontuacaoJogador = (moedasJogador * 2) + (estrelasJogador * 5) + tempoJogador;
+};
+
+const gameOver = () => {
+    modulos.playSom('somPerdeu');
+
+    clearInterval(tempoTime);
+    clearInterval(tempoMoverElementos);
+    clearInterval(tempoPegarElementos);
+
+    calcularPontuacao();
+
+    conexoes.bancoTemp(nomeJogador, moedasJogador, estrelasJogador, tempoJogador, pontuacaoJogador);
+
+    modal.classList.add('habilitar');
+    modalGameOver.classList.add('active');
 };
