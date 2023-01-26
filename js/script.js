@@ -19,6 +19,7 @@ const imgMoedas = document.querySelectorAll('#imgMoeda');
 const imgEstrelas = document.querySelectorAll('#imgEstrela');
 const txtMoedas = document.querySelector('#txtMoedas');
 const txtEstrelas = document.querySelector('#txtEstrelas');
+const btnReiniciar = document.querySelectorAll('#btnReiniciar');
 
 // Variáveis Globais
 let nomeJogador;
@@ -235,3 +236,11 @@ const gameOver = () => {
     modal.classList.add('habilitar');
     modalGameOver.classList.add('active');
 };
+
+const reiniciarPartida = () => {
+    modulos.playSom('somAbertura');
+    location.reload(true);
+};
+btnReiniciar.forEach((btn) => {
+    btn.addEventListener('click', reiniciarPartida);
+});
