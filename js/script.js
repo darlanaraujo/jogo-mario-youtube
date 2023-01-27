@@ -8,6 +8,7 @@ const btnStart = document.querySelector('#btnStart');
 const modal = document.querySelector('#modal');
 const modalLogin = document.querySelector('#modalLogin');
 const modalGameOver = document.querySelector('#modalGameOver');
+const modalRanking = document.querySelector('#modalRanking');
 const txtNomeJogador = document.querySelector('#txtNomeJogador');
 const sleep = document.querySelector('#sleep');
 const txtSleep = document.querySelector('#txtSleep');
@@ -20,6 +21,7 @@ const imgEstrelas = document.querySelectorAll('#imgEstrela');
 const txtMoedas = document.querySelector('#txtMoedas');
 const txtEstrelas = document.querySelector('#txtEstrelas');
 const btnReiniciar = document.querySelectorAll('#btnReiniciar');
+const btnRanking = document.querySelector('#btnRanking');
 
 // Variáveis Globais
 let nomeJogador;
@@ -56,7 +58,7 @@ const validarJogador = ({ target }) => {
 };
 
 const iniciarJogo = () => {
-    // modulos.playSom('somAbertura');
+    modulos.playSom('somAbertura');
     inputJogador.addEventListener('input', validarJogador);
 };
 iniciarJogo();
@@ -64,7 +66,7 @@ iniciarJogo();
 const start = () => {
     modulos.limparTexto();
     modulos.stopSom('somAbertura');
-    // modulos.playSom('somPrincipal');
+    modulos.playSom('somPrincipal');
     document.addEventListener('keydown', modulos.pular);
     document.addEventListener('keydown', modulos.voar);
     document.addEventListener('keydown', modulos.abaixar);
@@ -193,8 +195,14 @@ const controlePartida = () => {
             modulos.imgMario.style.left = '50px';
 
             clearInterval(loopControlePartida);
+            modulos.stopSom('somPrincipal');
+            modulos.playSom('somPerdeu');
 
-            gameOver();
+            setTimeout(() => {
+                gameOver();
+            }, 1500);
+
+
 
         }
 
@@ -210,8 +218,12 @@ const controlePartida = () => {
             modulos.imgMario.style.left = '70px';
 
             clearInterval(loopControlePartida);
+            modulos.stopSom('somPrincipal');
+            modulos.playSom('somPerdeu');
 
-            gameOver();
+            setTimeout(() => {
+                gameOver();
+            }, 1500);
 
         }
 
@@ -223,7 +235,8 @@ const calcularPontuacao = () => {
 };
 
 const gameOver = () => {
-    modulos.playSom('somPerdeu');
+    // modulos.stopSom('somPerdeu');
+    modulos.playSom('somGameOver');
 
     clearInterval(tempoTime);
     clearInterval(tempoMoverElementos);
@@ -244,3 +257,17 @@ const reiniciarPartida = () => {
 btnReiniciar.forEach((btn) => {
     btn.addEventListener('click', reiniciarPartida);
 });
+
+const telaRanking = () => {
+    modalGameOver.classList.remove('active');
+    modalRanking.classList.add('active');
+    modulos.stopSom('somGameOver');
+    modulos.playSom('somRanking');
+
+    tabelaRanking();
+};
+btnRanking.addEventListener('click', telaRanking);
+
+const tabelaRanking = () => {
+    // Criar conteudo!
+};
