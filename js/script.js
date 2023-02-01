@@ -263,11 +263,12 @@ const telaRanking = () => {
     modulos.playSom('somRanking');
 
     tabelaRanking();
+
 };
 btnRanking.addEventListener('click', telaRanking);
 
 const tabelaRanking = () => {
-    const classificacao = conexoes.getBanco();
+    const classificacao = conexoes.getBanco().sort(colocacao).reverse();
 
     classificacao.forEach((item, index) => {
         let posicao = index +1;
@@ -297,11 +298,20 @@ const criarTabela = (posicao, nome, moedas, estrelas, tempo, pontuacao) => {
     tabela.appendChild(elementoHTML);
 };
 
-const teste = () => {
-    const classificacao = conexoes.getBanco();
 
-    classificacao.forEach((item, index) => {
-        console.log(index +1, item);
-    });
+const colocacao = (a, b) => {
+    if(a.pontuacaoJogador > b.pontuacaoJogador) {
+        return 1;
+    } else if (a.pontuacaoJogador < b.pontuacaoJogador) {
+        return -1;
+    } else {
+        return 0;
+    }
+
+    // return a.pontuacaoJogador > b.pontuacaoJogador ? 1
+    // : a.pontuacaoJogador < b.pontuacaoJogador ? -1
+    // : 0;
 };
-teste();
+
+
+
