@@ -107,10 +107,11 @@
 
         .wrapper-tabela {
             width: 100%;
-            min-height: 200px;
             max-height: 300px;
             overflow-y: scroll;
             margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
 
             &::-webkit-scrollbar {
                 width: 10px;

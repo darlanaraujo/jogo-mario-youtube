@@ -22,6 +22,7 @@ const txtMoedas = document.querySelector('#txtMoedas');
 const txtEstrelas = document.querySelector('#txtEstrelas');
 const btnReiniciar = document.querySelectorAll('#btnReiniciar');
 const btnRanking = document.querySelector('#btnRanking');
+const tabela = document.querySelector('#tabela');
 
 // Variáveis Globais
 let nomeJogador;
@@ -202,8 +203,6 @@ const controlePartida = () => {
                 gameOver();
             }, 1500);
 
-
-
         }
 
         if (posicaoBalaLeft <= 120 && posicaoBalaLeft >= 50 && posicaoMarioBottom <= 110 && alturaMario >= 100) {
@@ -224,7 +223,6 @@ const controlePartida = () => {
             setTimeout(() => {
                 gameOver();
             }, 1500);
-
         }
 
     }, 10);
@@ -269,5 +267,41 @@ const telaRanking = () => {
 btnRanking.addEventListener('click', telaRanking);
 
 const tabelaRanking = () => {
-    // Criar conteudo!
+    const classificacao = conexoes.getBanco();
+
+    classificacao.forEach((item, index) => {
+        let posicao = index +1;
+        let nome = item.nomeJogador;
+        let moedas = item.moedasJogador;
+        let estrelas = item.estrelasJogador;
+        let tempo = item.tempoJogador;
+        let pontuacao = item.pontuacaoJogador;
+
+        criarTabela(posicao, nome, moedas, estrelas, tempo, pontuacao);
+    });
 };
+
+const criarTabela = (posicao, nome, moedas, estrelas, tempo, pontuacao) => {
+    const elementoHTML = document.createElement('tr');
+    elementoHTML.classList.add('linha');
+
+    elementoHTML.innerHTML = `
+        <td class="coluna">${posicao}</td>
+        <td class="coluna">${nome}</td>
+        <td class="coluna">${moedas}</td>
+        <td class="coluna">${estrelas}</td>
+        <td class="coluna">${tempo}</td>
+        <td class="coluna">${pontuacao}</td>
+    `;
+
+    tabela.appendChild(elementoHTML);
+};
+
+const teste = () => {
+    const classificacao = conexoes.getBanco();
+
+    classificacao.forEach((item, index) => {
+        console.log(index +1, item);
+    });
+};
+teste();
